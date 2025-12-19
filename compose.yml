@@ -1,0 +1,28 @@
+name: prom
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    restart: always
+    volumes:
+      - /app/prom/conf/prometheus.yml:/etc/prometheus/prometheus.yml
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "9090:9090"
+    networks:
+      - backend
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    depends_on:
+      - prometheus
+    ports:
+      - "3000:3000"
+    networks:
+      - backend
+networks:
+  backend:
+    name: backend
