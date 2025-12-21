@@ -2,7 +2,7 @@
 
 使用spring boot编写一个简单的应用，并使用prometheus监控
 
-### 简略步骤
+## 简略步骤
 1. `docker build -f Dockerfile -t boot-app:v1.0 .`
 2. `docker run -d -p 8080:8080 --name boot boot-app:v1.0`
 3. `docker compose -f compose.yml up -d`
@@ -16,9 +16,9 @@
 
 ***
 
-### 详细步骤
+## 详细步骤
 
-#### 一、创建spring boot：
+### 一、创建spring boot：
 
 创建object后选择依赖(spring web / spring boot actuator / prometheus)
 
@@ -54,7 +54,7 @@ public class HelloController {
 
 ***
 
-#### 二、编写dockerfile
+### 二、编写dockerfile
 
 ```dockerfile
 FROM openjdk:17
@@ -75,7 +75,7 @@ ENTRYPOINT ["java","-jar","/app/boot.jar"]
 
 ***
 
-#### 三、编写prometheus配置文件
+### 三、编写prometheus配置文件
 
 ```yaml
 #prometheus.yml
@@ -94,7 +94,7 @@ scrape_configs:
         appname: 'bootapp'
 ```
 
-#### 四、编写compose.yml
+### 四、编写compose.yml
 
 ```yaml
 name: prom
@@ -137,7 +137,7 @@ networks:
 
 ***
 
-#### 五、grafana连接prometheus
+### 五、grafana连接prometheus
 
 登录grafana，在data sources中连接prometheus
 ![grafana](./docs/images/grafana.png)
