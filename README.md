@@ -42,13 +42,13 @@ public class HelloController {
 ```
 
 运行后访问网页http://localhost:8080/hello
+![hello](./docs/images/hello.png)
+***
+![actuator](./docs/images/actuator.png)
 
-
-
-
-在`application.properties`添加
-
-`management.endpoints.web.exposure.include=*` 暴露所有监控指标
+> 在`application.properties`添加
+> 
+> `management.endpoints.web.exposure.include=*` 暴露所有监控指标
 
 使用maven编译，会产生一个jar包`spring-cloud-prometheus-demo-0.0.1-SNAPSHOT.jar`
 
@@ -133,13 +133,11 @@ networks:
 `docker compose -f compose.yml up -d`
 
 > 到此`prometheus` + `grafana` 有了
-
-
-
+![prometheus](./docs/images/prometheus.png)
 
 ***
 
 #### 五、grafana连接prometheus
 
 登录grafana，在data sources中连接prometheus
-
+![grafana](./docs/images/grafana.png)
