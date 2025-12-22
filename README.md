@@ -141,3 +141,31 @@ networks:
 
 登录grafana，在data sources中连接prometheus
 ![grafana](./docs/images/grafana.png)
+
+### 六、尝试连接node-exporter
+> node_exporter-1.8.0.linux-amd64
+> 
+>  `./node_exporter` 启动
+> 
+>  然后可以访问ip:9100
+
+修改prometheus配置
+```yaml
+#prometheus.yml
+global:
+  scrape_interval: 15s 
+  evaluation_interval: 15s 
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+  - job_name: 'bootapp-exporter'     //myapp的exporter
+    metrics_path: '/actuator/prometheus'     //myapp的指标：springboot通过actuator暴露
+    static_configs:
+      - targets: ['172.26.242.116:8080']   //内网ip
+        labels: 
+          appname: 'bootapp'
+  - job_name: 'node-exporter'    
+    static_configs:
+      - targets: ['172.26.242.116:9100']  
+```
