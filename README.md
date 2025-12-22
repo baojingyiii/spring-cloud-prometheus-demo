@@ -89,9 +89,9 @@ scrape_configs:
   - job_name: 'bootapp-exporter'     //myapp的exporter
     metrics_path: '/actuator/prometheus'     //myapp的指标：springboot通过actuator暴露
     static_configs:
-    - targets: ['172.26.242.116:8080']   //内网ip
-      labels: 
-        appname: 'bootapp'
+      - targets: ['172.26.242.116:8080']   //内网ip
+        labels: 
+          appname: 'bootapp'
 ```
 
 ### 四、编写compose.yml
